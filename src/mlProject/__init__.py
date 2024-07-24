@@ -8,13 +8,14 @@ log_dir = "logs"
 log_filepath = os.path.join(log_dir,"running_logs.log")
 os.makedirs(log_dir, exist_ok=True)
 
+os.chmod(log_filepath, 0o777) 
 
 logging.basicConfig(
     level= logging.INFO,
     format= logging_str,
 
     handlers=[
-        logging.FileHandler(log_filepath),
+        logging.FileHandler(log_filepath,mode='a'),
         logging.StreamHandler(sys.stdout)
     ]
 )
